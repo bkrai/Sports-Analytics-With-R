@@ -1,0 +1,7 @@
+library(BasketballAnalyzeR)
+PbP <- PbPmanipulation(PbP.BDB)
+subdata <- subset(PbP, player=="Stephen Curry")
+subdata$xx <- subdata$original_x/10
+subdata$yy <- subdata$original_y/10-41.75
+
+shotchart(data=subdata, x="xx", y="yy", scatter = T)
