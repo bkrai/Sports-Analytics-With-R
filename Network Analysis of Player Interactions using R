@@ -1,0 +1,6 @@
+library(BasketballAnalyzeR)
+PbP <- PbPmanipulation(PbP.BDB)
+subdata <- subset(PbP, team == " ")
+net <- assistnet(subdata)
+
+plot(net)
