@@ -1,0 +1,24 @@
+library(BasketballAnalyzeR)
+
+# Teams
+str(Tbox)
+data <- data.frame(Tbox[,-c(1,2)])
+
+kc <- kclustering(data)
+plot(kc)
+
+hc <- hclustering(data)
+plot(hc)
+
+# Players
+str(Pbox)
+data <- data.frame(Pbox[,-c(1,2)])
+
+data <- subset(data, Pbox$MIN>=2000)
+ID <- Pbox$Player[Pbox$MIN>=2000]
+
+kc <- kclustering(data)
+plot(kc)
+
+hc <- hclustering(data)
+plot(hc
