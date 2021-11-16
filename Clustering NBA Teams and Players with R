@@ -21,4 +21,4 @@ kc <- kclustering(data)
 plot(kc)
 
 hc <- hclustering(data)
-plot(hc
+plot(hc)
