@@ -1,0 +1,31 @@
+library(BasketballAnalyzeR)
+
+# Teams
+str(Tbox)
+data <- data.frame(Tbox[,c(1, 4, 9, 12, 15, 16)])
+labs <- c("% 2-point shots made",
+          "% 3-point shots made",
+          "% free throws made",
+          'Points')
+bubbleplot(data, id="Team", 
+           x="P2p", 
+           y="P3p", 
+           col="FTp",
+           size = 'PTS',
+           labels=labs)
+           
+# Players
+str(Pbox)
+data <- Pbox
+data <- subset(Pbox, Team =="Boston Celtics" & MIN>=500)
+data <- data.frame(data[, c(1, 2, 5, 8, 11, 14)])
+labs <- c("% 2-point shots made",
+          "% 3-point shots made",
+          "% free throws made",
+          "Points")
+bubbleplot(data, id="Player", 
+           x="P2p", 
+           y="P3p", 
+           col="FTp",
+           size="PTS",
+           labels=labs)           
