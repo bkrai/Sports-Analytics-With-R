@@ -1,0 +1,45 @@
+library(rtweet)
+library(ggplot2)
+library(dplyr)
+
+#Trends
+city <- get_trends("Boston")
+trend <- city %>%
+  group_by(trend) %>%
+  summarize(vol = mean(tweet_volume))
+trend <- arrange(trend, desc(vol)) 
+
+# Extract tweets 
+t <- search_tweets("#bleedgreen", n = 100, include_rts = F) 
+t <- lat_lng(t)  
+t <- na.omit(t[, c("lat", "lng", "country")])
+colnames(t) <- c('lat', 'long', 'country')
+
+#World map
+w <- map_data("world")
+world <- ggplot() +
+  geom_polygon(data = w, aes(x = long,y = lat, group = group),
+                        fill = "grey",
+                        color = "white") 
+
+world + coord_quickmap() +
+  geom_point(data = t, aes(x = long, y = lat),
+                      size = 0.5, 
+                      color = "darkgreen") +
+  labs(title = 'World Map of Tweet Locations', caption = 'Dec 19, 2021') 
+
+# US Map
+u <- map_data("usa")
+usa <- ggplot() +
+  geom_polygon(data = u, aes(x = long, y = lat,  group = group),
+               fill = "grey",
+               color = "white") 
+
+# Filter US tweets
+t <- t %>% filter(country == "United States")
+
+usa + coord_quickmap() +
+  geom_point(data = t,aes(x = long, y = lat),
+             size = 0.5, 
+             color = "darkgreen") +
+  labs(title = 'Map of Tweet Locations', caption = 'Dec 19, 2021') 
