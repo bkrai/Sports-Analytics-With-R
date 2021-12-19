@@ -21,7 +21,6 @@ world <- ggplot() +
   geom_polygon(data = w, aes(x = long,y = lat, group = group),
                         fill = "grey",
                         color = "white") 
-
 world + coord_quickmap() +
   geom_point(data = t, aes(x = long, y = lat),
                       size = 0.5, 
