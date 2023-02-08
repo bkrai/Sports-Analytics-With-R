@@ -1,0 +1,23 @@
+# Libraries
+library(BasketballAnalyzeR)
+library(corrplot)
+
+# Teams
+Tadd$team
+
+# Tbox
+Tbox[16:20,]
+?Tbox
+
+# Obox
+Obox[1:4,]
+
+# Four factors
+fourfactors(Tbox[1:4,], Obox[1:4,])
+?fourfactors
+
+# Plots
+FF <- fourfactors(Tbox[11:15,], Obox[11:15,])
+plot(FF)
+
+FF <- fourfactors(Tbox, Obox)
