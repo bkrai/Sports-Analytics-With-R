@@ -21,3 +21,18 @@ FF <- fourfactors(Tbox[11:15,], Obox[11:15,])
 plot(FF)
 
 FF <- fourfactors(Tbox, Obox)
+
+# Multiple Linear Regression
+efg_dev <- FF$F1.Off - FF$F1.Def
+to_dev <- FF$F2.Def  - FF$F2.Off
+rb_dev <- FF$F3.Off  - FF$F3.Def
+ft_dev <- FF$F4.Off - FF$F4.Def
+wins <- Tbox$W
+data <- data.frame(wins, efg_dev, to_dev, rb_dev, ft_dev)
+round(cor(data), digits = 3)
+
+corrplot(cor(data), number.cex = 1.5,
+         method = "number",
+         type = "upper")
+
+model <- lm(wins ~ ., data)
