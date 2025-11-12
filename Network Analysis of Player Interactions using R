@@ -1,4 +1,5 @@
 library(BasketballAnalyzeR)
+library(ggnetwork)
 PbP <- PbPmanipulation(PbP.BDB)
 subdata <- subset(PbP, team == " ")
 net <- assistnet(subdata)
